@@ -1,0 +1,37 @@
+{
+  "episodeId": "ep1",
+  "start": "intro",
+  "nodes": {
+    "intro": {
+      "title": "Your Beginning",
+      "text": "Before everything starts, choose your path.",
+      "ui": { "type": "class_select" }
+    },
+    "intro_after_class": {
+      "title": "Tavern",
+      "text": "You step into an old tavern. The smell of wet wood and candle smoke fills the air.",
+      "choices": [
+        { "label": "Talk to the bartender", "next": "bartender" },
+        { "label": "Leave the tavern", "next": "street" }
+      ]
+    },
+    "bartender": {
+      "title": "Bartender",
+      "text": "His eyes are sharp. \"You look like someone who needs work,\" he says.",
+      "choices": [
+        { "label": "Ask for details", "next": "street" }
+      ]
+    },
+    "street": {
+      "title": "Street",
+      "text": "Cold night. The city holds its breath.",
+      "choices": [
+        { "label": "Finish (MVP)", "next": "end" }
+      ]
+    },
+    "end": {
+      "title": "Finished",
+      "text": "Episode 1 complete (MVP)."
+    }
+  }
+}
