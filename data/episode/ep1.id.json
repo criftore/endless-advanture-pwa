@@ -3,50 +3,35 @@
   "start": "intro",
   "nodes": {
     "intro": {
+      "title": "Awal Perjalanan",
+      "text": "Sebelum semuanya dimulai, pilih jalan hidupmu.",
+      "ui": { "type": "class_select" }
+    },
+    "intro_after_class": {
       "title": "Tavern",
       "text": "Kau melangkah masuk ke tavern tua. Bau kayu basah dan asap lilin memenuhi udara.",
       "choices": [
-        { "label": "Mulai petualangan", "next": "choose_class" }
+        { "label": "Bicara dengan bartender", "next": "bartender" },
+        { "label": "Keluar dari tavern", "next": "street" }
       ]
     },
-    "choose_class": {
-      "title": "Awal",
-      "text": "Sebelum semuanya berubah, kau harus memilih jalanmu.",
-      "ui": { "type": "class_select" }
-    },
-    "after_class": {
-      "title": "Tavern",
-      "text": "Pilihanmu terasa final. Malam ini, tak ada yang akan memaafkan keraguan.",
+    "bartender": {
+      "title": "Bartender",
+      "text": "Matanya tajam. \"Kau terlihat seperti orang yang butuh kerja,\" katanya.",
       "choices": [
-        { "label": "Keluar ke gang belakang", "next": "alley" }
+        { "label": "Tanya lebih lanjut", "next": "street" }
       ]
     },
-    "alley": {
-      "title": "Gang",
-      "text": "Di gang sempit, sesuatu bergerak di antara genangan air.",
-      "combat": { "enemyId": "slime", "winNext": "win", "loseNext": "lose" }
-    },
-    "win": {
-      "title": "Gang",
-      "text": "Makhluk itu runtuh. Nafasmu masih berat—tapi kau hidup.",
-      "effects": [
-        { "type": "addGold", "value": 3 },
-        { "type": "addExp", "value": 8 },
-        { "type": "addItem", "itemId": "potion", "qty": 1 }
-      ],
+    "street": {
+      "title": "Jalan",
+      "text": "Malam dingin. Kota menahan napas.",
       "choices": [
-        { "label": "Akhiri episode", "next": "__END__" }
+        { "label": "Selesai (MVP)", "next": "end" }
       ]
     },
-    "lose": {
-      "title": "Gelap",
-      "text": "Kau jatuh. Dunia memudar, tapi cerita belum selesai.",
-      "effects": [
-        { "type": "setHp", "value": 1 }
-      ],
-      "choices": [
-        { "label": "Bangun lagi", "next": "intro" }
-      ]
+    "end": {
+      "title": "Selesai",
+      "text": "Episode 1 selesai (MVP)."
     }
   }
 }
