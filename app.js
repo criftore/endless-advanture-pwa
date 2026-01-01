@@ -359,19 +359,8 @@ function tryRun() {
 function renderStory(node) {
   setPanel(node.title, node.text);
   const buttons = [];
-    // Jika node ini adalah penghubung ke episode lain
-  if (node.next_episode) {
-    $("#uiSub").textContent = `${state.data.episode.episodeId.toUpperCase()} • ${node.title}`;
-    setChoices([
-      mkBtn(state.settings.lang === "id" ? "Lanjut ke episode berikutnya" : "Continue to next episode", {
-        primary: true,
-        onClick: () => goNextEpisode(node.next_episode)
-      })
-    ]);
-    return;
-  }
-  
 
+  // 1) UI khusus: pilih kelas
   if (node.ui?.type === "class_select") {
     $("#uiSub").textContent = state.settings.lang === "id" ? "Pilih kelas" : "Choose a class";
     setPanel(node.title, node.text);
@@ -387,21 +376,28 @@ function renderStory(node) {
         }
       }));
     }
-    buttons.push(mkBtn(state.settings.lang === "id" ? "Kembali ke judul" : "Back to title", {
+
+    // Opsional: beneran balik ke menu/judul
+    buttons.push(mkBtn(state.settings.lang === "id" ? "Kembali ke menu" : "Back to menu", {
       onClick: () => {
-        state.story.nodeId = "intro";
+        state.player = null;
+        state.mode = "story";
+        state.combat = null;
         render();
       }
     }));
+
     setChoices(buttons);
     return;
   }
 
+  // sub header
   $("#uiSub").textContent = `${state.data.episode.episodeId.toUpperCase()} • ${node.title}`;
 
+  // 2) Apply effects (sekali saja per node)
   if (node.effects) applyEffectsOnce(state.story.nodeId, node.effects);
-  
 
+  // 3) Node combat
   if (node.combat) {
     buttons.push(mkBtn(state.settings.lang === "id" ? "Mulai pertarungan" : "Start combat", {
       primary: true,
@@ -411,16 +407,35 @@ function renderStory(node) {
     return;
   }
 
+  // 4) Penghubung episode berikutnya
+  if (node.next_episode) {
+    buttons.push(mkBtn(state.settings.lang === "id" ? "Lanjut ke episode berikutnya" : "Continue to next episode", {
+      primary: true,
+      onClick: () => goNextEpisode(node.next_episode)
+    }));
+    setChoices(buttons);
+    return;
+  }
+
+  // 5) Choices biasa
   const choices = node.choices || [];
   if (choices.length === 0) {
-    buttons.push(mkBtn(state.settings.lang === "id" ? "Lanjut" : "Continue", { primary:true, onClick: () => gotoNode("__END__") }));
+    buttons.push(mkBtn(state.settings.lang === "id" ? "Lanjut" : "Continue", {
+      primary: true,
+      onClick: () => gotoNode("__END__")
+    }));
   } else {
     for (const c of choices) {
-      buttons.push(mkBtn(c.label, { primary:true, onClick: () => gotoNode(c.next) }));
+      buttons.push(mkBtn(c.label, {
+        primary: true,
+        onClick: () => gotoNode(c.next)
+      }));
     }
   }
+
   setChoices(buttons);
 }
+
 
 function renderCombat() {
   const p = state.player.stats;
