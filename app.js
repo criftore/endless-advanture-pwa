@@ -185,6 +185,14 @@ function gotoNode(nodeId) {
   saveGame();
   render();
 }
+async function goNextEpisode(episodeId) {
+  state.story.episodeId = episodeId;
+  state.story.nodeId = "intro"; // masuk ke start ep berikutnya
+  await loadEpisode(state.story.episodeId);
+  saveGame();
+  render();
+}
+
 
 function applyEffects(effects = []) {
   for (const ef of effects) {
@@ -323,6 +331,18 @@ function tryRun() {
 function renderStory(node) {
   setPanel(node.title, node.text);
   const buttons = [];
+    // Jika node ini adalah penghubung ke episode lain
+  if (node.next_episode) {
+    $("#uiSub").textContent = `${state.data.episode.episodeId.toUpperCase()} • ${node.title}`;
+    setChoices([
+      mkBtn(state.settings.lang === "id" ? "Lanjut ke episode berikutnya" : "Continue to next episode", {
+        primary: true,
+        onClick: () => goNextEpisode(node.next_episode)
+      })
+    ]);
+    return;
+  }
+  
 
   if (node.ui?.type === "class_select") {
     $("#uiSub").textContent = state.settings.lang === "id" ? "Pilih kelas" : "Choose a class";
