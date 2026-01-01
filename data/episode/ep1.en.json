@@ -3,50 +3,35 @@
   "start": "intro",
   "nodes": {
     "intro": {
+      "title": "Your Beginning",
+      "text": "Before everything starts, choose your path.",
+      "ui": { "type": "class_select" }
+    },
+    "intro_after_class": {
       "title": "Tavern",
       "text": "You step into an old tavern. The smell of wet wood and candle smoke fills the air.",
       "choices": [
-        { "label": "Begin the adventure", "next": "choose_class" }
+        { "label": "Talk to the bartender", "next": "bartender" },
+        { "label": "Leave the tavern", "next": "street" }
       ]
     },
-    "choose_class": {
-      "title": "Prologue",
-      "text": "Before everything changes, you must choose your path.",
-      "ui": { "type": "class_select" }
-    },
-    "after_class": {
-      "title": "Tavern",
-      "text": "Your choice feels final. Tonight, hesitation will not be forgiven.",
+    "bartender": {
+      "title": "Bartender",
+      "text": "His eyes are sharp. \"You look like someone who needs work,\" he says.",
       "choices": [
-        { "label": "Step into the back alley", "next": "alley" }
+        { "label": "Ask for details", "next": "street" }
       ]
     },
-    "alley": {
-      "title": "Alley",
-      "text": "In a narrow alley, something stirs between shallow puddles.",
-      "combat": { "enemyId": "slime", "winNext": "win", "loseNext": "lose" }
-    },
-    "win": {
-      "title": "Alley",
-      "text": "It collapses. Your breathing is heavy—yet you live.",
-      "effects": [
-        { "type": "addGold", "value": 3 },
-        { "type": "addExp", "value": 8 },
-        { "type": "addItem", "itemId": "potion", "qty": 1 }
-      ],
+    "street": {
+      "title": "Street",
+      "text": "Cold night. The city holds its breath.",
       "choices": [
-        { "label": "End episode", "next": "__END__" }
+        { "label": "Finish (MVP)", "next": "end" }
       ]
     },
-    "lose": {
-      "title": "Darkness",
-      "text": "You fall. The world fades, but the story isn't over.",
-      "effects": [
-        { "type": "setHp", "value": 1 }
-      ],
-      "choices": [
-        { "label": "Wake up", "next": "intro" }
-      ]
+    "end": {
+      "title": "Finished",
+      "text": "Episode 1 complete (MVP)."
     }
   }
 }
