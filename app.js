@@ -16,7 +16,9 @@ const state = {
   story: { episodeId: "ep1", nodeId: "intro" },
   player: null,
   mode: "story", // "story" | "combat"
-  combat: null
+  combat: null,
+  flags: { applied: {} }
+  
 };
 
 function t(obj) {
@@ -49,7 +51,8 @@ function saveGame() {
   const payload = {
     settings: state.settings,
     story: state.story,
-    player: state.player
+    player: state.player,
+    flags: state.flags
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
   $("#hint").textContent = state.settings.lang === "id" ? "Tersimpan." : "Saved.";
@@ -66,6 +69,7 @@ function loadGame() {
     if (payload.settings?.lang) state.settings.lang = payload.settings.lang;
     if (payload.story?.episodeId && payload.story?.nodeId) state.story = payload.story;
     if (payload.player) state.player = payload.player;
+    if (payload.flags) state.flags = payload.flags;
     return true;
   } catch {
     return false;
@@ -202,6 +206,30 @@ function applyEffects(effects = []) {
     if (ef.type === "addItem") addItem(ef.itemId, ef.qty|0);
   }
 }
+
+function nodeKey(nodeId){
+  return `${state.story.episodeId}:${nodeId}`;
+}
+
+function applyEffectsOnce(nodeId, effects = []) {
+  if (!effects || effects.length === 0) return;
+
+  const key = nodeKey(nodeId);
+  state.flags.applied = state.flags.applied || {};
+
+  if (state.flags.applied[key]) return; // sudah pernah dipakai
+
+  for (const ef of effects) {
+    if (ef.type === "addGold") state.player.gold += (ef.value|0);
+    if (ef.type === "addExp") state.player.exp += (ef.value|0);
+    if (ef.type === "setHp") state.player.stats.hp = clamp((ef.value|0), 0, state.player.stats.maxHp);
+    if (ef.type === "addItem") addItem(ef.itemId, ef.qty|0);
+  }
+
+  state.flags.applied[key] = true;
+  saveGame();
+}
+
 
 function startCombat(enemyId, winNext, loseNext) {
   const enemy = state.data.enemies[enemyId];
@@ -371,7 +399,8 @@ function renderStory(node) {
 
   $("#uiSub").textContent = `${state.data.episode.episodeId.toUpperCase()} • ${node.title}`;
 
-  if (node.effects) applyEffects(node.effects);
+  if (node.effects) applyEffectsOnce(state.story.nodeId, node.effects);
+  
 
   if (node.combat) {
     buttons.push(mkBtn(state.settings.lang === "id" ? "Mulai pertarungan" : "Start combat", {
