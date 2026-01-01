@@ -1,0 +1,8 @@
+{
+  "firebolt": {
+    "id": "firebolt",
+    "name": { "id": "Firebolt", "en": "Firebolt" },
+    "mpCost": 4,
+    "power": 7
+  }
+}

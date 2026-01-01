@@ -1,0 +1,29 @@
+{
+  "warrior": {
+    "id": "warrior",
+    "name": { "id": "Warrior", "en": "Warrior" },
+    "desc": { "id": "Petarung tangguh dengan pertahanan tinggi.", "en": "A durable fighter with high defense." },
+    "stats": { "maxHp": 42, "maxMp": 6, "atk": 7, "def": 4 },
+    "skills": ["power_strike"],
+    "magics": [],
+    "startItems": [{ "id": "potion", "qty": 2 }]
+  },
+  "mage": {
+    "id": "mage",
+    "name": { "id": "Mage", "en": "Mage" },
+    "desc": { "id": "Pengguna sihir dengan MP tinggi dan serangan magic kuat.", "en": "A spellcaster with high MP and strong magic." },
+    "stats": { "maxHp": 26, "maxMp": 18, "atk": 4, "def": 1 },
+    "skills": [],
+    "magics": ["firebolt"],
+    "startItems": [{ "id": "ether", "qty": 1 }, { "id": "potion", "qty": 1 }]
+  },
+  "rogue": {
+    "id": "rogue",
+    "name": { "id": "Rogue", "en": "Rogue" },
+    "desc": { "id": "Cepat dan licik, seimbang antara serangan dan bertahan.", "en": "Fast and cunning, balanced offense and defense." },
+    "stats": { "maxHp": 32, "maxMp": 10, "atk": 6, "def": 2 },
+    "skills": ["quick_stab"],
+    "magics": [],
+    "startItems": [{ "id": "potion", "qty": 1 }, { "id": "smoke_bomb", "qty": 1 }]
+  }
+}

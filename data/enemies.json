@@ -1,0 +1,8 @@
+{
+  "slime": {
+    "id": "slime",
+    "name": { "id": "Slime", "en": "Slime" },
+    "stats": { "maxHp": 18, "maxMp": 0, "atk": 4, "def": 1 },
+    "rewards": { "gold": 3, "exp": 8 }
+  }
+}

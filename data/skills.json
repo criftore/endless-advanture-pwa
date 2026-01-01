@@ -1,0 +1,14 @@
+{
+  "power_strike": {
+    "id": "power_strike",
+    "name": { "id": "Power Strike", "en": "Power Strike" },
+    "mpCost": 0,
+    "mult": 1.5
+  },
+  "quick_stab": {
+    "id": "quick_stab",
+    "name": { "id": "Quick Stab", "en": "Quick Stab" },
+    "mpCost": 0,
+    "mult": 1.2
+  }
+}

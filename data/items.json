@@ -1,0 +1,23 @@
+{
+  "potion": {
+    "id": "potion",
+    "name": { "id": "Potion", "en": "Potion" },
+    "desc": { "id": "Memulihkan 15 HP.", "en": "Restores 15 HP." },
+    "type": "heal_hp",
+    "value": 15
+  },
+  "ether": {
+    "id": "ether",
+    "name": { "id": "Ether", "en": "Ether" },
+    "desc": { "id": "Memulihkan 8 MP.", "en": "Restores 8 MP." },
+    "type": "heal_mp",
+    "value": 8
+  },
+  "smoke_bomb": {
+    "id": "smoke_bomb",
+    "name": { "id": "Smoke Bomb", "en": "Smoke Bomb" },
+    "desc": { "id": "Meningkatkan peluang kabur.", "en": "Increases escape chance." },
+    "type": "escape_boost",
+    "value": 25
+  }
+}
