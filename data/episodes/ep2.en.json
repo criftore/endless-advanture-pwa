@@ -1,0 +1,36 @@
+{
+  "episodeId": "ep2",
+  "start": "intro",
+  "nodes": {
+    "intro": {
+      "title": "City Gate",
+      "text": "You stand before the city gate. Two guards stare sharply.",
+      "choices": [
+        { "label": "Ask to enter", "next": "guard_talk" },
+        { "label": "Go around", "next": "alley" }
+      ]
+    },
+    "guard_talk": {
+      "title": "Guard",
+      "text": "\"State your business,\" the guard says.",
+      "choices": [
+        { "label": "Tell the truth", "next": "inside" },
+        { "label": "Lie", "next": "alley" }
+      ]
+    },
+    "alley": {
+      "title": "Narrow Alley",
+      "text": "Your steps stir a wet sound—something moves in the dark.",
+      "choices": [
+        { "label": "Prepare to fight (combat next step)", "next": "inside" }
+      ]
+    },
+    "inside": {
+      "title": "Inside the City",
+      "text": "The city opens a new chapter. (EP2 MVP)",
+      "choices": [
+        { "label": "Finish", "next": "__END__" }
+      ]
+    }
+  }
+}
