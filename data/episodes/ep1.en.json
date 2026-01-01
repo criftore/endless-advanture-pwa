@@ -35,14 +35,13 @@
         { "type": "addItem", "itemId": "potion", "qty": 1 }
       ],
       "choices": [
-  { "label": "Continue to Episode 2", "next": "to_ep2" }
+        { "label": "Continue to Episode 2", "next": "to_ep2" }
       ]
-      "to_ep2": {
-  "title": "Continue",
-  "text": "You leave the alley behind. Ahead, the city gate awaits.",
-  "next_episode": "ep2"
-      }
-      
+    },
+    "to_ep2": {
+      "title": "Continue",
+      "text": "You leave the alley behind. Ahead, the city gate awaits.",
+      "next_episode": "ep2"
     },
     "lose": {
       "title": "Darkness",
