@@ -1,0 +1,36 @@
+{
+  "episodeId": "ep2",
+  "start": "intro",
+  "nodes": {
+    "intro": {
+      "title": "Gerbang Kota",
+      "text": "Kau berdiri di depan gerbang. Dua penjaga menatap tajam.",
+      "choices": [
+        { "label": "Minta izin masuk", "next": "guard_talk" },
+        { "label": "Pergi memutar", "next": "alley" }
+      ]
+    },
+    "guard_talk": {
+      "title": "Penjaga",
+      "text": "\"Tunjukkan urusanmu,\" kata penjaga.",
+      "choices": [
+        { "label": "Jujur", "next": "inside" },
+        { "label": "Bohong", "next": "alley" }
+      ]
+    },
+    "alley": {
+      "title": "Gang Sempit",
+      "text": "Langkahmu memicu suara basah—sesuatu bergerak di kegelapan.",
+      "choices": [
+        { "label": "Siap bertarung (akan combat di tahap berikut)", "next": "inside" }
+      ]
+    },
+    "inside": {
+      "title": "Di Dalam Kota",
+      "text": "Kota membuka kisah baru. (EP2 MVP)",
+      "choices": [
+        { "label": "Selesai", "next": "__END__" }
+      ]
+    }
+  }
+}
